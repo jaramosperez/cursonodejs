@@ -6,7 +6,7 @@ Curso de Nodejs
 - [x] 03 Bases de NodeJS
 - [x] 04 Por Hacer 
 - [x] 05 Clima Mundo [Corregir, API ya no funciona bien]
-- [ ] 
+- [x] 06 Webserver [Express - HBS]
 - [ ] 
 - [ ] 
 - [ ] 
