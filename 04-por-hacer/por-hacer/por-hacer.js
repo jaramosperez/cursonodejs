@@ -23,7 +23,7 @@ const cargarDB = () => {
 }
 
 const crear = (descripcion) => {
-
+    // Crea una tarea por hacer y la agrega al data.json
     cargarDB();
 
     let porHacer = {
@@ -38,10 +38,50 @@ const crear = (descripcion) => {
     return porHacer;
 }
 
-const listar = () => {
+const getListado = () => {
+    // Obtiene y retorna lo almacenado en el archivo data.json
+    cargarDB();
+    return listadoPorHacer;
+}
+
+const actualizar = (descripcion, completado = true) => {
+
+    cargarDB();
+
+    let index = listadoPorHacer.findIndex(tarea => {
+        return tarea.descripcion === descripcion;
+    })
+
+    if (index > 0) {
+        listadoPorHacer[index].completado = completado;
+        guardarDB();
+        return true;
+    } else {
+        return false;
+    }
+}
+
+const borrar = (descripcion) => {
+
+    cargarDB();
+
+    let nuevoListado = listadoPorHacer.filter( tarea => {
+        return tarea.descripcion !== descripcion;
+    });
+
+    if (listadoPorHacer.length === nuevoListado.length) {
+        return false;
+    } else {
+        listadoPorHacer = nuevoListado;
+        guardarDB();
+        return true;
+    }
 
 }
 
 module.exports = {
-    crear
+    crear,
+    getListado,
+    actualizar,
+    borrar
 }
