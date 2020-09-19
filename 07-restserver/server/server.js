@@ -15,8 +15,10 @@ app.use(bodyParser.json());
 app.use(require('./routes/usuario'));
 
 // CONEXIÓN A MONGODB
-mongoose.connect('mongodb://localhost:27017/cafe', { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
-useCreateIndex: true }, () => {
+mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false,
+useCreateIndex: true }, (err, res) => {
+    if(err) throw err;
+
     console.log("Conexión a la BD exitosa");
 });
 
@@ -24,3 +26,6 @@ useCreateIndex: true }, () => {
 app.listen(process.env.PORT, () => {
     console.log('Escuchando en puerto ', 3000);
 });
+
+// WJtkLLyOYA3iHRBm
+//mongodb+srv://zodux:WJtkLLyOYA3iHRBm@cluster0.b4n91.mongodb.net/cafe
